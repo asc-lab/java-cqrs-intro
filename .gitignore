@@ -1,0 +1,17 @@
+.idea/*
+*/target/
+!.mvn/wrapper/maven-wrapper.jar
+*/*.iws
+*/*.iml
+*/*.ipr
+*/.mvn/*
+*/.idea/*
+*/*.iws
+*/out/
+*/.idea_modules/
+*/atlassian-ide-plugin.xml
+*/target/
+!.mvn/wrapper/maven-wrapper.jar
+*/*.iws
+*/*.iml
+*/*.ipr
