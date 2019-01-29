@@ -5,11 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Embeddable;
 import java.time.LocalDate;
-import java.time.Period;
 
-@Embeddable
+import static java.time.temporal.ChronoUnit.DAYS;
+
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -39,7 +38,7 @@ public class DateRange {
         return new DateRange(from, endDate);
     }
 
-    public int days() {
-        return Period.between(from, to).getDays();
+    public long days() {
+        return DAYS.between(from, to);
     }
 }

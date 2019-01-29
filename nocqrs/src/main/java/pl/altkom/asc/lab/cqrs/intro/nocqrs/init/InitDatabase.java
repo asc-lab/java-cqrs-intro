@@ -23,8 +23,8 @@ public class InitDatabase {
 
         Product productFromRepo = productRepository.withCode(standardCarInsurance.getCode());
 
-        offerRepository.add(InitOffersBuilder.standardOneYearOCOfferValidUnit(productFromRepo, "OFF-001", LocalDate.now().plusDays(15)));
-        offerRepository.add(InitOffersBuilder.standardOneYearOCOfferValidUnit(productFromRepo, "OFF-002", LocalDate.now().minusDays(3)));
+        offerRepository.add(InitOffersBuilder.standardOneYearOCOfferValidUntil(productFromRepo, "OFF-001", LocalDate.now().plusDays(15)));
+        offerRepository.add(InitOffersBuilder.standardOneYearOCOfferValidUntil(productFromRepo, "OFF-002", LocalDate.now().minusDays(3)));
 
 
     }

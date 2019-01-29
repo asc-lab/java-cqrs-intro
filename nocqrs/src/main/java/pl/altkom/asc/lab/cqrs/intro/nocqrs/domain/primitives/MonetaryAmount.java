@@ -2,12 +2,11 @@ package pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.primitives;
 
 import lombok.Getter;
 
-import javax.persistence.Embeddable;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
-@Embeddable
 @Getter
 public class MonetaryAmount implements Comparable<MonetaryAmount> {
     private final BigDecimal amount;
@@ -41,7 +40,7 @@ public class MonetaryAmount implements Comparable<MonetaryAmount> {
         return new MonetaryAmount(new BigDecimal(amount));
     }
 
-    protected MonetaryAmount(){
+    protected MonetaryAmount() {
         this.amount = BigDecimal.ZERO;
     }
 
@@ -140,7 +139,7 @@ public class MonetaryAmount implements Comparable<MonetaryAmount> {
 
     @Override
     public boolean equals(Object object) {
-        if (object == null || !(object instanceof MonetaryAmount)) {
+        if (!(object instanceof MonetaryAmount)) {
             return false;
         }
         return amount.equals(((MonetaryAmount) object).toBigDecimal());
@@ -155,6 +154,11 @@ public class MonetaryAmount implements Comparable<MonetaryAmount> {
 
     @Override
     public String toString() {
-        return this.amount.toString();
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        df.setMinimumFractionDigits(0);
+        df.setGroupingUsed(false);
+
+        return df.format(this.amount);
     }
 }

@@ -1,8 +1,8 @@
 package pl.altkom.asc.lab.cqrs.intro.nocqrs.domain;
 
 import lombok.Getter;
+import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.exceptions.BusinessException;
 import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.primitives.MonetaryAmount;
-import pl.altkom.asc.lab.cqrs.intro.nocqrs.exceptions.BusinessException;
 
 import java.time.LocalDate;
 import java.time.Period;

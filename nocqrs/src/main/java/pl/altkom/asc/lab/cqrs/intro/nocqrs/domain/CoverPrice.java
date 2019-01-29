@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
+
 public class CoverPrice {
     private UUID id;
     private Cover cover;

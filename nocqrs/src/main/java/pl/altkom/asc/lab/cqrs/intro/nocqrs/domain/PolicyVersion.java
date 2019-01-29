@@ -1,9 +1,9 @@
 package pl.altkom.asc.lab.cqrs.intro.nocqrs.domain;
 
 import lombok.Getter;
+import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.exceptions.BusinessException;
 import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.primitives.DateRange;
 import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.primitives.MonetaryAmount;
-import pl.altkom.asc.lab.cqrs.intro.nocqrs.exceptions.BusinessException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -59,6 +59,7 @@ public class PolicyVersion {
         this.baseVersionNumber = baseVersion.getVersionNumber();
         this.versionValidityPeriod = DateRange.between(startDate, baseVersion.getCoverPeriod().getTo());
         this.policyStatus = baseVersion.getPolicyStatus();
+        this.versionStatus = PolicyVersionStatus.Draft;
         this.coverPeriod = DateRange.between(baseVersion.getCoverPeriod().getFrom(), baseVersion.getCoverPeriod().getTo());
         this.policyHolder = baseVersion.getPolicyHolder().copy();
         this.driver = baseVersion.getDriver().copy();
@@ -68,10 +69,12 @@ public class PolicyVersion {
     }
 
     private MonetaryAmount recalculateTotal() {
-        return null;
+        return covers.stream()
+                .map(PolicyCover::getAmount)
+                .reduce(MonetaryAmount.zero(), MonetaryAmount::add);
     }
 
-    private void addCover(CoverPrice coverPrice, LocalDate coverStart, LocalDate coverEnd) {
+    void addCover(CoverPrice coverPrice, LocalDate coverStart, LocalDate coverEnd) {
         if (!isDraft())
             throw new BusinessException("Only draft versions can be altered");
 
@@ -82,6 +85,9 @@ public class PolicyVersion {
                 coverPrice.getPrice(),
                 coverPrice.getCoverPeriod()
         );
+
+        covers.add(cover);
+        totalPremium = recalculateTotal();
     }
 
     boolean isDraft() {

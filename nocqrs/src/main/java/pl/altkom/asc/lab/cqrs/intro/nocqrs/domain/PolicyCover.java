@@ -5,6 +5,7 @@ import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.primitives.DateRange;
 import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.primitives.MonetaryAmount;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.UUID;
@@ -40,8 +41,9 @@ public class PolicyCover {
     }
 
     private MonetaryAmount calculateAmount() {
-        //TODO: refactor
-        int divided = Integer.divideUnsigned(coverPeriod.days(), pricePeriod.getDays());
-        return MonetaryAmount.from(divided).multiply(price.getAmount());
+        BigDecimal coverPeriodInDays = BigDecimal.valueOf(coverPeriod.days());
+        BigDecimal pricePeriodInDays = BigDecimal.valueOf(pricePeriod.getDays());
+        BigDecimal multiplier = coverPeriodInDays.divide(pricePeriodInDays, 2, RoundingMode.HALF_UP);
+        return price.multiply(multiplier);
     }
 }

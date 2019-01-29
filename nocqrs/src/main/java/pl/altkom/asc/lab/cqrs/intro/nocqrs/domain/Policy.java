@@ -2,8 +2,8 @@ package pl.altkom.asc.lab.cqrs.intro.nocqrs.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.exceptions.BusinessException;
 import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.primitives.DateRange;
-import pl.altkom.asc.lab.cqrs.intro.nocqrs.exceptions.BusinessException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -66,8 +66,8 @@ public class Policy {
         if (!versionAtEffectiveDate.isPresent())
             throw new BusinessException("No active version at given date");
 
-        addNewVersionBasedOn(versionAtEffectiveDate.get(), effectiveDateOfChange);
-
+        PolicyVersion annexVer = addNewVersionBasedOn(versionAtEffectiveDate.get(), effectiveDateOfChange);
+        annexVer.addCover(newCover, effectiveDateOfChange, annexVer.getCoverPeriod().getTo());
     }
 
     private boolean isTerminated() {
@@ -94,7 +94,7 @@ public class Policy {
         lastActiveVer.cancel();
     }
 
-    private void confirmChanges(int versionToConfirmNumber) {
+    public void confirmChanges(int versionToConfirmNumber) {
         Optional<PolicyVersion> versionToConfirm = getPolicyVersions().withNumber(versionToConfirmNumber);
         if (!versionToConfirm.isPresent())
             throw new BusinessException("Version not found");

@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.UUID;
 
 class InitOffersBuilder {
-    static Offer standardOneYearOCOfferValidUnit(Product product, String number, LocalDate validityEnd) {
+    static Offer standardOneYearOCOfferValidUntil(Product product, String number, LocalDate validityEnd) {
         return new Offer(
                 UUID.randomUUID(),
                 number,
@@ -34,13 +34,13 @@ class InitOffersBuilder {
     }
 
     static Offer rejectedOfferValidUntil(Product product, String number, LocalDate validityEnd) {
-        Offer offer = standardOneYearOCOfferValidUnit(product, number, validityEnd);
+        Offer offer = standardOneYearOCOfferValidUntil(product, number, validityEnd);
         offer.reject();
         return offer;
     }
 
-    static Offer ConvertedOfferValidUntil(Product product, String number, LocalDate validityEnd) {
-        Offer offer = standardOneYearOCOfferValidUnit(product, number, validityEnd);
+    static Offer convertedOfferValidUntil(Product product, String number, LocalDate validityEnd) {
+        Offer offer = standardOneYearOCOfferValidUntil(product, number, validityEnd);
         offer.convert();
         return offer;
     }

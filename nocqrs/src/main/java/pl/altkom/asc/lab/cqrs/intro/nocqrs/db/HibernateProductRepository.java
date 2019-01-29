@@ -1,8 +1,8 @@
 package pl.altkom.asc.lab.cqrs.intro.nocqrs.db;
 
 import org.springframework.stereotype.Component;
-import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.Product;
 import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.ProductRepository;
+import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.Product;
 
 import java.util.List;
 
