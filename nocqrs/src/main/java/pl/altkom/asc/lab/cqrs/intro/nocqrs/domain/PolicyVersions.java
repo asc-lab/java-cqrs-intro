@@ -37,4 +37,10 @@ public class PolicyVersions {
                 .max(Comparator.comparingInt(PolicyVersion::getVersionNumber))
                 .get();
     }
+
+    public PolicyVersion last() {
+        return versions.stream()
+                .max(Comparator.comparingInt(PolicyVersion::getVersionNumber))
+                .get();
+    }
 }

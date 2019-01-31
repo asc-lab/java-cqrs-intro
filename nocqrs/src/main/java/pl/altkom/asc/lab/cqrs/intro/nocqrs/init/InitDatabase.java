@@ -25,7 +25,5 @@ public class InitDatabase {
 
         offerRepository.add(InitOffersBuilder.standardOneYearOCOfferValidUntil(productFromRepo, "OFF-001", LocalDate.now().plusDays(15)));
         offerRepository.add(InitOffersBuilder.standardOneYearOCOfferValidUntil(productFromRepo, "OFF-002", LocalDate.now().minusDays(3)));
-
-
     }
 }

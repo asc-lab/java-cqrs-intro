@@ -16,8 +16,38 @@ public class PoliciesController {
     private final PolicyService policyService;
 
     @PostMapping
-    public ResponseEntity<CreatePolicyResult> create(@RequestBody CreatePolicyRequest request) {
+    public ResponseEntity<CreatePolicyResult> createPolicy(@RequestBody CreatePolicyRequest request) {
         CreatePolicyResult result = policyService.createPolicy(request);
+        return ok(result);
+    }
+
+    @PostMapping("/buyAdditionalCover")
+    public ResponseEntity<BuyAdditionalCoverResult> buyAdditionalCover(@RequestBody BuyAdditionalCoverRequest request) {
+        BuyAdditionalCoverResult result = policyService.buyAdditionalCover(request);
+        return ok(result);
+    }
+
+    @PostMapping("/confirmBuyAdditionalCover")
+    public ResponseEntity<ConfirmBuyAdditionalCoverResult> buyAdditionalCover(@RequestBody ConfirmBuyAdditionalCoverRequest request) {
+        ConfirmBuyAdditionalCoverResult result = policyService.confirmBuyAdditionalCover(request);
+        return ok(result);
+    }
+
+    @PostMapping("/terminate")
+    public ResponseEntity<TerminatePolicyResult> terminatePolicy(@RequestBody TerminatePolicyRequest request) {
+        TerminatePolicyResult result = policyService.terminatePolicy(request);
+        return ok(result);
+    }
+
+    @PostMapping("/confirmTermination")
+    public ResponseEntity<ConfirmTerminationResult> terminatePolicy(@RequestBody ConfirmTerminationRequest request) {
+        ConfirmTerminationResult result = policyService.confirmTermination(request);
+        return ok(result);
+    }
+
+    @PostMapping("/cancelLastAnnex")
+    public ResponseEntity<CancelLastAnnexResult> cancelLastAnnex(@RequestBody CancelLastAnnexRequest request) {
+        CancelLastAnnexResult result = policyService.cancelLastAnnex(request);
         return ok(result);
     }
 

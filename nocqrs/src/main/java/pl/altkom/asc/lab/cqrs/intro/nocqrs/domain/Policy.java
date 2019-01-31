@@ -78,11 +78,18 @@ public class Policy {
         if (isTerminated())
             throw new BusinessException("Policy already terminated");
 
-        Optional<PolicyVersion> versionAtEffectiveDate = getPolicyVersions().effectiveAtDate(effectiveDateOfChange);
-        if (!versionAtEffectiveDate.isPresent())
+        Optional<PolicyVersion> versionAtEffectiveDateOpt = getPolicyVersions().effectiveAtDate(effectiveDateOfChange);
+        if (!versionAtEffectiveDateOpt.isPresent()) {
             throw new BusinessException("No active version at given date");
+        }
 
-        PolicyVersion termVer = addNewVersionBasedOn(versionAtEffectiveDate.get(), effectiveDateOfChange);
+        PolicyVersion versionAtEffectiveDate = versionAtEffectiveDateOpt.get();
+
+        if (!versionAtEffectiveDate.getCoverPeriod().contains(effectiveDateOfChange)) {
+            throw new BusinessException("Cannot terminate policy at given date as it is not withing cover period");
+        }
+
+        PolicyVersion termVer = addNewVersionBasedOn(versionAtEffectiveDate, effectiveDateOfChange);
         termVer.endPolicyOn(effectiveDateOfChange.minusDays(1));
     }
 
