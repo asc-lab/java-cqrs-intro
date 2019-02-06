@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Component
+//@Component
 public class InMemoryPolicyRepository implements PolicyRepository {
 
     private Map<String, Policy> POLICIES = new ConcurrentHashMap<>();

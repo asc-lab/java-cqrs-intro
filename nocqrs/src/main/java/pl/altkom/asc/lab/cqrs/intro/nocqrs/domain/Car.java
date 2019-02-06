@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,7 +16,7 @@ public class Car {
     private String plateNumber;
     private int productionYear;
 
-    public Car copy() {
+    Car copy() {
         return new Car(make, plateNumber, productionYear);
     }
 }

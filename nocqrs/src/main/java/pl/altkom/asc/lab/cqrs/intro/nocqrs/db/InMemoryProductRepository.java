@@ -1,6 +1,5 @@
 package pl.altkom.asc.lab.cqrs.intro.nocqrs.db;
 
-import org.springframework.stereotype.Component;
 import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.Product;
 import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.ProductRepository;
 
@@ -9,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Component
+//@Component
 public class InMemoryProductRepository implements ProductRepository {
 
     private Map<String, Product> PRODUCTS = new ConcurrentHashMap<>();

@@ -7,8 +7,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface PolicyRepository {
-    Policy withNumber(String number);
     void add(Policy policy);
+    Policy withNumber(String number);
     List<Policy> find(PolicyFilter filter);
 
     @Getter

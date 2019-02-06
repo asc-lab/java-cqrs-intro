@@ -2,11 +2,13 @@ package pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.primitives;
 
 import lombok.Getter;
 
+import javax.persistence.Embeddable;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
+@Embeddable
 @Getter
 public class MonetaryAmount implements Comparable<MonetaryAmount> {
     private final BigDecimal amount;

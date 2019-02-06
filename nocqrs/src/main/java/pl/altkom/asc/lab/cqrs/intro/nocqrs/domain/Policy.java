@@ -2,24 +2,35 @@ package pl.altkom.asc.lab.cqrs.intro.nocqrs.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.exceptions.BusinessException;
 import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.primitives.DateRange;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Entity
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
 public class Policy {
 
+    @Id
+    @GeneratedValue
     private UUID id;
     private String number;
+    @ManyToOne(optional = false)
     private Product product;
+    @OneToMany(cascade = CascadeType.ALL)
     private List<PolicyVersion> versions = new ArrayList<>();
     private LocalDate purchaseDate;
+
+    //@ManyToOne(optional = false)
+    //private PolicyVersion currentVersion;
 
     public Policy(UUID uuid, String policyNumber, Product product, LocalDate purchaseDate) {
         this.id = uuid;
@@ -99,6 +110,9 @@ public class Policy {
             throw new BusinessException("There are no annexed left to cancel");
 
         lastActiveVer.cancel();
+
+        //WARNING: Added to support queries
+        //currentVersion = getPolicyVersions().latestActive();
     }
 
     public void confirmChanges(int versionToConfirmNumber) {
@@ -107,6 +121,9 @@ public class Policy {
             throw new BusinessException("Version not found");
 
         versionToConfirm.get().confirm();
+
+        //WARNING: Added to support queries
+        //currentVersion = getPolicyVersions().latestActive();
     }
 
     private void addFirstVersion(Offer offer, LocalDate purchaseDate, LocalDate policyStartDate) {

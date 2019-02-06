@@ -1,9 +1,11 @@
 package pl.altkom.asc.lab.cqrs.intro.nocqrs.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.exceptions.BusinessException;
 import pl.altkom.asc.lab.cqrs.intro.nocqrs.domain.primitives.MonetaryAmount;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -11,19 +13,37 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+@Entity
+@NoArgsConstructor
 @Getter
 public class Offer {
 
+    @Id
+    @GeneratedValue
     private UUID id;
     private String number;
     private OfferStatus status;
+    @ManyToOne(optional = false)
     private Product product;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "firstName", column = @Column(name = "customer_first_name")),
+            @AttributeOverride(name = "lastName", column = @Column(name = "customer_last_name")),
+            @AttributeOverride(name = "taxId", column = @Column(name = "customer_tax_id"))
+    })
     private Person customer;
     private Car car;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "firstName", column = @Column(name = "driver_first_name")),
+            @AttributeOverride(name = "lastName", column = @Column(name = "driver_last_name")),
+            @AttributeOverride(name = "taxId", column = @Column(name = "driver_tax_id"))
+    })
     private Person driver;
     private Period coverPeriod;
     private MonetaryAmount totalCost;
     private LocalDate creationDate;
+    @OneToMany(cascade = CascadeType.ALL)
     private List<CoverPrice> covers = new ArrayList<>();
 
     private LocalDate getValidityDate() {
