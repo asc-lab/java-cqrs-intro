@@ -1,8 +1,9 @@
-package pl.altkom.asc.lab.cqrs.intro.separatemodels.queries.findpolicies;
+package pl.altkom.asc.lab.cqrs.intro.separatemodels.queries;
 
 import lombok.Getter;
 import lombok.Setter;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.cqs.Query;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.readmodel.PolicyInfoDto;
 
 import java.time.LocalDate;
 import java.util.List;
