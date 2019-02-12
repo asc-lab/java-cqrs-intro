@@ -16,7 +16,6 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 public class PolicyCover {
-
     @Id
     @GeneratedValue
     private UUID id;

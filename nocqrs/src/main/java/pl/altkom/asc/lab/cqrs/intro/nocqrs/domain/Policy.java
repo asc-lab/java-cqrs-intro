@@ -18,7 +18,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Policy {
-
     @Id
     @GeneratedValue
     private UUID id;

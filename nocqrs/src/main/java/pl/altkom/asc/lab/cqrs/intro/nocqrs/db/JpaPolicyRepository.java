@@ -24,6 +24,7 @@ public interface JpaPolicyRepository extends PolicyRepository, JpaRepository<Pol
 
     @Override
     default List<Policy> find(PolicyFilter filter) {
+        //TODO add filtering with Specification
         return findAll();
     }
 }

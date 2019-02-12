@@ -17,7 +17,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 public class Offer {
-
     @Id
     @GeneratedValue
     private UUID id;

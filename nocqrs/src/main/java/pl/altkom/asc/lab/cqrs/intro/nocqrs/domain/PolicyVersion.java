@@ -16,7 +16,6 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 public class PolicyVersion {
-
     @Id
     @GeneratedValue
     private UUID id;
@@ -24,7 +23,6 @@ public class PolicyVersion {
     private Integer baseVersionNumber;
     private PolicyVersionStatus versionStatus;
     private Policy.PolicyStatus policyStatus;
-
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "from", column = @Column(name = "version_validity_from")),
