@@ -1,29 +1,57 @@
 package pl.altkom.asc.lab.cqrs.intro.separatemodels.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.exceptions.BusinessException;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.primitives.DateRange;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.primitives.MonetaryAmount;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Entity
 @Getter
+@NoArgsConstructor
 public class PolicyVersion {
-
+    @Id
+    @GeneratedValue
     private UUID id;
     private int versionNumber;
     private Integer baseVersionNumber;
     private PolicyVersionStatus versionStatus;
     private Policy.PolicyStatus policyStatus;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "from", column = @Column(name = "version_validity_from")),
+            @AttributeOverride(name = "to", column = @Column(name = "version_validity_to"))
+    })
     private DateRange versionValidityPeriod;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "from", column = @Column(name = "cover_from")),
+            @AttributeOverride(name = "to", column = @Column(name = "cover_to"))
+    })
     private DateRange coverPeriod;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "firstName", column = @Column(name = "policy_holder_first_name")),
+            @AttributeOverride(name = "lastName", column = @Column(name = "policy_holder_last_name")),
+            @AttributeOverride(name = "taxId", column = @Column(name = "policy_holder_tax_id"))
+    })
     private Person policyHolder;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "firstName", column = @Column(name = "driver_first_name")),
+            @AttributeOverride(name = "lastName", column = @Column(name = "driver_last_name")),
+            @AttributeOverride(name = "taxId", column = @Column(name = "driver_tax_id"))
+    })
     private Person driver;
     private Car car;
     private MonetaryAmount totalPremium;
+    @OneToMany(cascade = CascadeType.ALL)
     private List<PolicyCover> covers = new ArrayList<>();
 
     PolicyVersion(
@@ -121,7 +149,7 @@ public class PolicyVersion {
         policyStatus = Policy.PolicyStatus.Terminated;
     }
 
-     void cancel() {
+    void cancel() {
         if (!isActive())
             throw new BusinessException("Only active version can be cancelled");
 

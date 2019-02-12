@@ -5,10 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Embeddable;
 import java.time.LocalDate;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
+@Embeddable
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
