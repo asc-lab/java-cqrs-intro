@@ -2,11 +2,13 @@ package pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.buyadditionalcover;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.*;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.primitives.MonetaryAmount;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.cqs.CommandHandler;
 
 @Component
+@Transactional
 @RequiredArgsConstructor
 public class BuyAdditionalCoverHandler implements CommandHandler<BuyAdditionalCoverResult, BuyAdditionalCoverCommand> {
 
