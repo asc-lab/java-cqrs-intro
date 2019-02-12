@@ -3,12 +3,12 @@ package pl.altkom.asc.lab.cqrs.intro.separatemodels.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.confirmbuyadditionalcover.ConfirmBuyAdditionalCoverCommand;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.confirmbuyadditionalcover.ConfirmBuyAdditionalCoverResult;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.buyadditionalcover.BuyAdditionalCoverCommand;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.buyadditionalcover.BuyAdditionalCoverResult;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.cancellastannex.CancelLastAnnexCommand;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.cancellastannex.CancelLastAnnexResult;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.confirmbuyadditionalcover.ConfirmBuyAdditionalCoverCommand;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.confirmbuyadditionalcover.ConfirmBuyAdditionalCoverResult;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.confirmtermination.ConfirmTerminationCommand;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.confirmtermination.ConfirmTerminationResult;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.createpolicy.CreatePolicyCommand;
@@ -16,10 +16,12 @@ import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.createpolicy.CreateP
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.terminatepolicy.TerminatePolicyCommand;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.terminatepolicy.TerminatePolicyResult;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.cqs.CommandBus;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.queries.findpolicies.FindPoliciesQuery;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.queries.getpolicydetails.GetPolicyDetailsQuery;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.queries.getpolicydetails.PolicyDto;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.queries.findpolicies.PolicyInfoDto;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.queries.FindPoliciesQuery;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.queries.GetPolicyVersionDetailsQuery;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.queries.GetPolicyVersionsListQuery;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.readmodel.PolicyInfoDto;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.readmodel.PolicyVersionDto;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.readmodel.PolicyVersionsListDto;
 
 import java.util.Collection;
 
@@ -61,12 +63,17 @@ public class PoliciesController {
         return ok(bus.executeCommand(command));
     }
 
-    @GetMapping("/{policyNumber}")
-    public ResponseEntity<PolicyDto> getPolicyDetails(@PathVariable String policyNumber) {
-        return ok(bus.executeQuery(new GetPolicyDetailsQuery(policyNumber)));
+    @GetMapping("/details/{policyNumber}/versions")
+    public ResponseEntity<PolicyVersionsListDto> getPolicyVersions(@PathVariable String policyNumber) {
+        return ok(bus.executeQuery(new GetPolicyVersionsListQuery(policyNumber)));
     }
 
-    @GetMapping("/find")
+    @GetMapping("/details/{policyNumber}/versions/{versionNumber}")
+    public ResponseEntity<PolicyVersionDto> getPolicyVersionDetails(@PathVariable String policyNumber, @PathVariable int versionNumber) {
+        return ok(bus.executeQuery(new GetPolicyVersionDetailsQuery(policyNumber, versionNumber)));
+    }
+
+    @PostMapping("/find")
     public Collection<PolicyInfoDto> find(@RequestBody FindPoliciesQuery query) {
         return bus.executeQuery(query);
     }
