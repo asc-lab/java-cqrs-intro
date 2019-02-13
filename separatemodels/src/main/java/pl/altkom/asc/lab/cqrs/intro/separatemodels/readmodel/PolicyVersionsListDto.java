@@ -27,12 +27,12 @@ public class PolicyVersionsListDto {
     static class PolicyVersionInfoDtoRowMapper implements RowMapper {
 
         @Override
-        public Object mapRow(ResultSet resultSet, int i) throws SQLException {
+        public Object mapRow(ResultSet rs, int i) throws SQLException {
             return new PolicyVersionInfoDto(
-                    resultSet.getInt("version_number"),
-                    resultSet.getDate("version_from").toLocalDate(),
-                    resultSet.getDate("version_to").toLocalDate(),
-                    resultSet.getString("version_status")
+                    rs.getInt("version_number"),
+                    rs.getDate("version_from").toLocalDate(),
+                    rs.getDate("version_to").toLocalDate(),
+                    rs.getString("version_status")
             );
         }
     }

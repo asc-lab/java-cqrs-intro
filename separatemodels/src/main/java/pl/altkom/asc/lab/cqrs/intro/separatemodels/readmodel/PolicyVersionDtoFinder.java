@@ -16,6 +16,10 @@ public class PolicyVersionDtoFinder {
     }
 
     public PolicyVersionDto findByPolicyNumberAndVersionNumber(String policyNumber, int versionNumber) {
-        return repository.findByPolicyNumberAndVersionNumber(policyNumber, versionNumber);
+        PolicyVersionDto dto = repository.findByPolicyNumberAndVersionNumber(policyNumber, versionNumber);
+        List<PolicyVersionDto.PolicyVersionCoverDto> coversInVersion = repository.getCoversInVersion(dto.getId());
+        dto.setCovers(coversInVersion);
+
+        return dto;
     }
 }

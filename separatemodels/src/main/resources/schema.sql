@@ -1,3 +1,7 @@
+drop table IF EXISTS policy_info_dto;
+drop table IF EXISTS policy_version_cover_dto;
+drop table IF EXISTS policy_version_dto;
+
 create table policy_info_dto
 (
   id                   bigserial primary key,

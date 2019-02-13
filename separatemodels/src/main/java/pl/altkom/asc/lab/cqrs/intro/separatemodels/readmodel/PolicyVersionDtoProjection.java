@@ -17,24 +17,24 @@ public class PolicyVersionDtoProjection {
     private final PolicyVersionDtoRepository repository;
 
     public void createPolicyVersionDto(Policy policy, PolicyVersion version) {
-        PolicyVersionDto policyVersionDto = new PolicyVersionDto(
-                version.getId(),
-                policy.getId(),
-                policy.getNumber(),
-                policy.getProduct().getCode(),
-                version.getVersionNumber(),
-                version.getVersionStatus().name(),
-                version.getPolicyStatus().name(),
-                version.getPolicyHolder().getFullName(),
-                "",
-                version.getCar().getPlaceNumberWithMake(),
-                version.getCoverPeriod().getFrom(),
-                version.getCoverPeriod().getTo(),
-                version.getVersionValidityPeriod().getFrom(),
-                version.getVersionValidityPeriod().getTo(),
-                version.getTotalPremium().getAmount(),
-                buildCovers(version)
-        );
+        PolicyVersionDto policyVersionDto = PolicyVersionDto.builder()
+                .policyVersionId(version.getId())
+                .policyId(policy.getId())
+                .policyNumber(policy.getNumber())
+                .productCode(policy.getProduct().getCode())
+                .versionNumber(version.getVersionNumber())
+                .versionStatus(version.getVersionStatus().name())
+                .policyStatus(version.getPolicyStatus().name())
+                .policyHolder(version.getPolicyHolder().getFullName())
+                .insured("")
+                .car(version.getCar().getPlaceNumberWithMake())
+                .coverFrom(version.getCoverPeriod().getFrom())
+                .coverTo(version.getCoverPeriod().getTo())
+                .versionFrom(version.getVersionValidityPeriod().getFrom())
+                .versionTo(version.getVersionValidityPeriod().getTo())
+                .totalPremiumAmount(version.getTotalPremium().getAmount())
+                .covers(buildCovers(version))
+                .build();
 
         repository.save(policyVersionDto);
     }
