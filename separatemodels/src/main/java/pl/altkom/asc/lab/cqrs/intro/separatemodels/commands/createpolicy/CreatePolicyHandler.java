@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.*;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.cqs.CommandHandler;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.events.EventPublisher;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.CommandHandler;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.events.EventPublisher;
 
 import java.util.UUID;
 

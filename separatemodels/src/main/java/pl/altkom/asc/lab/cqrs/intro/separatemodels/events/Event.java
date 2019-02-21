@@ -1,4 +1,4 @@
-package pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.events;
+package pl.altkom.asc.lab.cqrs.intro.separatemodels.events;
 
 import org.springframework.context.ApplicationEvent;
 

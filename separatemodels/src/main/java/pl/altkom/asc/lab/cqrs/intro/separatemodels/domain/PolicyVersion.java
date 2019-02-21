@@ -2,7 +2,6 @@ package pl.altkom.asc.lab.cqrs.intro.separatemodels.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.exceptions.BusinessException;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.primitives.DateRange;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.primitives.MonetaryAmount;
 

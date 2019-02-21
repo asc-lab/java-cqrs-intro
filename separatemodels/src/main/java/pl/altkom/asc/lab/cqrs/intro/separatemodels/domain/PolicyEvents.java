@@ -1,7 +1,7 @@
 package pl.altkom.asc.lab.cqrs.intro.separatemodels.domain;
 
 import lombok.Getter;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.events.Event;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.events.Event;
 
 public class PolicyEvents {
 

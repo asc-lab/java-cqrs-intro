@@ -9,9 +9,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.cqs.CommandBus;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.cqs.Registry;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.cqs.SpringCommandBus;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.CommandBus;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.Registry;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.SpringCommandBus;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.init.InitDatabase;
 
 @EnableJpaRepositories("pl.altkom.asc.lab.cqrs.intro.separatemodels.db")

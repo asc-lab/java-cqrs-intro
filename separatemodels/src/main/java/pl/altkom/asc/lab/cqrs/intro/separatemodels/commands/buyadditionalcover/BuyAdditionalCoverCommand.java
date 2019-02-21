@@ -1,7 +1,7 @@
 package pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.buyadditionalcover;
 
 import lombok.Getter;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.cqs.Command;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.Command;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

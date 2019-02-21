@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.Policy;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.PolicyRepository;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.cqs.CommandHandler;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.CommandHandler;
 
 @Component
 @Transactional

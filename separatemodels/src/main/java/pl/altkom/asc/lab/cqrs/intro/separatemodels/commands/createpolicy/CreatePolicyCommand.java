@@ -2,7 +2,7 @@ package pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.createpolicy;
 
 import lombok.Getter;
 import lombok.Setter;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.cqs.Command;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.Command;
 
 import java.time.LocalDate;
 

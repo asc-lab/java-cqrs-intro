@@ -15,7 +15,7 @@ import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.createpolicy.CreateP
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.createpolicy.CreatePolicyResult;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.terminatepolicy.TerminatePolicyCommand;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.terminatepolicy.TerminatePolicyResult;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.cqs.CommandBus;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.CommandBus;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.queries.FindPoliciesQuery;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.queries.GetPolicyVersionDetailsQuery;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.queries.GetPolicyVersionsListQuery;

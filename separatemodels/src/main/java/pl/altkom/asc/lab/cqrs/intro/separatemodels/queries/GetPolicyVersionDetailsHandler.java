@@ -2,7 +2,7 @@ package pl.altkom.asc.lab.cqrs.intro.separatemodels.queries;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.cqs.QueryHandler;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.QueryHandler;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.readmodel.PolicyVersionDto;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.readmodel.PolicyVersionDtoFinder;
 

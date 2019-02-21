@@ -3,7 +3,6 @@ package pl.altkom.asc.lab.cqrs.intro.separatemodels.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.exceptions.BusinessException;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.primitives.DateRange;
 
 import javax.persistence.*;
@@ -86,15 +85,13 @@ public class Policy {
             throw new BusinessException("Policy already terminated");
 
         Optional<PolicyVersion> versionAtEffectiveDateOpt = getPolicyVersions().effectiveAtDate(effectiveDateOfChange);
-        if (!versionAtEffectiveDateOpt.isPresent()) {
+        if (!versionAtEffectiveDateOpt.isPresent())
             throw new BusinessException("No active version at given date");
-        }
 
         PolicyVersion versionAtEffectiveDate = versionAtEffectiveDateOpt.get();
 
-        if (!versionAtEffectiveDate.getCoverPeriod().contains(effectiveDateOfChange)) {
+        if (!versionAtEffectiveDate.getCoverPeriod().contains(effectiveDateOfChange))
             throw new BusinessException("Cannot terminate policy at given date as it is not withing cover period");
-        }
 
         PolicyVersion termVer = addNewVersionBasedOn(versionAtEffectiveDate, effectiveDateOfChange);
         termVer.endPolicyOn(effectiveDateOfChange.minusDays(1));

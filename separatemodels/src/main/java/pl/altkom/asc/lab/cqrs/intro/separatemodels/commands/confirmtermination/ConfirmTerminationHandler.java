@@ -6,8 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.Policy;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.PolicyEvents;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.PolicyRepository;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.cqs.CommandHandler;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.events.EventPublisher;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.CommandHandler;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.events.EventPublisher;
 
 @Component
 @Transactional

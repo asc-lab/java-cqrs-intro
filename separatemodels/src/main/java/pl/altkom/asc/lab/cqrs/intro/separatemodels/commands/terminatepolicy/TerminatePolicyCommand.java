@@ -1,7 +1,7 @@
 package pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.terminatepolicy;
 
 import lombok.Getter;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.infrastructure.cqs.Command;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.Command;
 
 import java.time.LocalDate;
 
