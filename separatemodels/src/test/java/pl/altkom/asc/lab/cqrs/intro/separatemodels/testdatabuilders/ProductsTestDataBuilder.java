@@ -1,11 +1,12 @@
-package pl.altkom.asc.lab.cqrs.intro.separatemodels.testdatabuilders
+package pl.altkom.asc.lab.cqrs.intro.separatemodels.testdatabuilders;
 
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.Cover
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.Product
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.Cover;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.Product;
 
+import java.util.Arrays;
+import java.util.UUID;
 
-class ProductsTestDataBuilder {
-
+public class ProductsTestDataBuilder {
     static Product standardCarInsurance() {
         return new Product(
                 UUID.randomUUID(),
@@ -16,6 +17,6 @@ class ProductsTestDataBuilder {
                         new Cover(UUID.randomUUID(), "AC", "Auto casco"),
                         new Cover(UUID.randomUUID(), "ASSITANCE", "Assistance")
                 )
-        )
+        );
     }
 }
