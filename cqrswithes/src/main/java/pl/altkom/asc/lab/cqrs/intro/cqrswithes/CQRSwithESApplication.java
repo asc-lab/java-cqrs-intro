@@ -7,9 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import pl.altkom.asc.lab.cqrs.intro.cqrswithes.cqs.CommandBus;
+import pl.altkom.asc.lab.cqrs.intro.cqrswithes.cqs.Bus;
 import pl.altkom.asc.lab.cqrs.intro.cqrswithes.cqs.Registry;
-import pl.altkom.asc.lab.cqrs.intro.cqrswithes.cqs.SpringCommandBus;
+import pl.altkom.asc.lab.cqrs.intro.cqrswithes.cqs.SpringBus;
 import pl.altkom.asc.lab.cqrs.intro.cqrswithes.init.InitDatabase;
 
 @SpringBootApplication
@@ -28,8 +28,8 @@ public class CQRSwithESApplication implements ApplicationRunner {
     }
 
     @Bean
-    public CommandBus commandBus(Registry registry) {
-        return new SpringCommandBus(registry);
+    public Bus commandBus(Registry registry) {
+        return new SpringBus(registry);
     }
 
     @Override

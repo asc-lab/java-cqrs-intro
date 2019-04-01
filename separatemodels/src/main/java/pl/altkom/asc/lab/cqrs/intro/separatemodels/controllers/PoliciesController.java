@@ -15,7 +15,7 @@ import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.createpolicy.CreateP
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.createpolicy.CreatePolicyResult;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.terminatepolicy.TerminatePolicyCommand;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.commands.terminatepolicy.TerminatePolicyResult;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.CommandBus;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.Bus;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.queries.FindPoliciesQuery;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.queries.GetPolicyVersionDetailsQuery;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.queries.GetPolicyVersionsListQuery;
@@ -31,7 +31,7 @@ import static org.springframework.http.ResponseEntity.ok;
 @RequiredArgsConstructor
 public class PoliciesController {
 
-    private final CommandBus bus;
+    private final Bus bus;
 
     @PostMapping
     public ResponseEntity<CreatePolicyResult> createPolicy(@RequestBody CreatePolicyCommand command) {

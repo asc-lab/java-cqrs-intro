@@ -9,9 +9,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.CommandBus;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.Bus;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.Registry;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.SpringCommandBus;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs.SpringBus;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.init.InitDatabase;
 
 @EnableJpaRepositories("pl.altkom.asc.lab.cqrs.intro.separatemodels.db")
@@ -32,8 +32,8 @@ public class SeparateModelsApplication implements ApplicationRunner {
     }
 
     @Bean
-    public CommandBus commandBus(Registry registry) {
-        return new SpringCommandBus(registry);
+    public Bus commandBus(Registry registry) {
+        return new SpringBus(registry);
     }
 
     @Override

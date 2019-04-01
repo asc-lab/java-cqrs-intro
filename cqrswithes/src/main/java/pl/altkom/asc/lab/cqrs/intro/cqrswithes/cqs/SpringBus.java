@@ -1,9 +1,9 @@
-package pl.altkom.asc.lab.cqrs.intro.separatemodels.cqs;
+package pl.altkom.asc.lab.cqrs.intro.cqrswithes.cqs;
 
-public class SpringCommandBus implements CommandBus {
+public class SpringBus implements Bus {
     private final Registry registry;
 
-    public SpringCommandBus(Registry registry) {
+    public SpringBus(Registry registry) {
         this.registry = registry;
     }
 

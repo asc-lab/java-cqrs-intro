@@ -15,7 +15,7 @@ import pl.altkom.asc.lab.cqrs.intro.cqrswithes.commands.createpolicy.CreatePolic
 import pl.altkom.asc.lab.cqrs.intro.cqrswithes.commands.createpolicy.CreatePolicyResult;
 import pl.altkom.asc.lab.cqrs.intro.cqrswithes.commands.terminatepolicy.TerminatePolicyCommand;
 import pl.altkom.asc.lab.cqrs.intro.cqrswithes.commands.terminatepolicy.TerminatePolicyResult;
-import pl.altkom.asc.lab.cqrs.intro.cqrswithes.cqs.CommandBus;
+import pl.altkom.asc.lab.cqrs.intro.cqrswithes.cqs.Bus;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -23,7 +23,7 @@ import static org.springframework.http.ResponseEntity.ok;
 @RequiredArgsConstructor
 public class PoliciesController {
 
-    private final CommandBus bus;
+    private final Bus bus;
 
     @PostMapping
     public ResponseEntity<CreatePolicyResult> createPolicy(@RequestBody CreatePolicyCommand command) {
