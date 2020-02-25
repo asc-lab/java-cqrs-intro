@@ -24,7 +24,7 @@ public class PolicyInfoDtoFinderTest {
   PolicyInfoDtoFinder policyInfoDtoFinder;
 
   @Test
-  public void testFindByFilter() throws Exception {
+  public void should_return_one_policy_POL0001() {
     // given
     Policy pol0001 = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2019, 1, 1), "POL0001");
     policyInfoDtoProjection.createPolicyInfoDto(pol0001);

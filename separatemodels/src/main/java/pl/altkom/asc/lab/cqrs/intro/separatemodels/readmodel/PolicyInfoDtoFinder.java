@@ -12,7 +12,7 @@ public class PolicyInfoDtoFinder {
     private final PolicyInfoDtoRepository repository;
 
     public List<PolicyInfoDto> findByFilter(PolicyFilter filter) {
-        //TODO add filtering
-        return (List<PolicyInfoDto>) repository.findAll();
+        PolicyInfoDtoSpecification policyInfoDtoSpecification = new PolicyInfoDtoSpecification(filter);
+        return (List<PolicyInfoDto>) repository.findAll(policyInfoDtoSpecification);
     }
 }
