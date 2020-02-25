@@ -22,7 +22,7 @@ public class PolicyInfoDtoProjectionTest {
     @Test
     public void testCreatePolicyInfoDto() {
         //given
-        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2019, 1, 1));
+        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2019, 1, 1), "POL0001");
         PolicyInfoDtoProjection projection = new PolicyInfoDtoProjection(repository);
 
         //when

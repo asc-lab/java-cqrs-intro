@@ -30,7 +30,7 @@ public class PolicyEventsProjectionsHandlerTest {
     @Test
     public void testHandlePolicyCreated() {
         //given
-        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2019, 1, 1));
+        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2019, 1, 1), "POL0001");
         PolicyEventsProjectionsHandler handler = new PolicyEventsProjectionsHandler(
                 new PolicyInfoDtoProjection(policyInfoDtoRepository),
                 new PolicyVersionDtoProjection(policyVersionDtoRepository)
