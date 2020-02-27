@@ -2,14 +2,13 @@ package pl.altkom.asc.lab.cqrs.intro.separatemodels.readmodel;
 
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 import java.util.UUID;
 
-public interface PolicyInfoDtoRepository extends CrudRepository<PolicyInfoDto, Long>, JpaSpecificationExecutor<PolicyInfoDto> {
+public interface PolicyInfoDtoRepository extends CrudRepository<PolicyInfoDto, Long> {
 
     @Modifying
     @Query("UPDATE policy_info_dto " +
