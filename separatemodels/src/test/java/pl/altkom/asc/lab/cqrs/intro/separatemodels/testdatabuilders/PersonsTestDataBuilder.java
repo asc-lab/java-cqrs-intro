@@ -3,7 +3,16 @@ package pl.altkom.asc.lab.cqrs.intro.separatemodels.testdatabuilders;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.Person;
 
 public class PersonsTestDataBuilder {
-    static Person kowalski() {
-        return new Person("Jan", "Kowalski", "11111116");
+
+    public static final String FIRST_NAME_JAN = "Jan";
+    public static final String LAST_NAME_KOWALSKI = "Kowalski";
+    static final String FIRST_NAME_KAZIMIERZ = "Kazimierz";
+
+    public static Person kowalski() {
+        return new Person(FIRST_NAME_JAN, LAST_NAME_KOWALSKI, "11111116");
+    }
+
+    public static Person nowak() {
+        return new Person(FIRST_NAME_KAZIMIERZ, "Nowak", "11111116");
     }
 }

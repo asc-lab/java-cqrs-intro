@@ -12,14 +12,27 @@ class PolicyFilterQueryBuilder {
     }
 
     String build() {
-        String where = "";
+        String where = "1 = 1";
         if (!StringUtils.isEmpty(filter.getNumber())) {
-            where += "policy_number = '" + filter.getNumber() + "'";
+            where += " AND policy_number = '" + filter.getNumber() + "'";
+        }
+        if (!StringUtils.isEmpty(filter.getHolderFirstName())) {
+            where += " AND policy_holder like '%" + filter.getHolderFirstName() + "%'";
+        }
+        if (!StringUtils.isEmpty(filter.getHolderLastName())) {
+            where += " AND policy_holder like '%" + filter.getHolderLastName() + "%'";
+        }
+        if (filter.getStartDateFrom() != null) {
+            where += " AND cover_from >= '" + filter.getStartDateFrom() + "'";
+        }
+        if (filter.getStartDateTo() != null) {
+            where += " AND cover_from <= '" + filter.getStartDateTo() + "'";
+        }
+        if (!StringUtils.isEmpty(filter.getCarPlateNumber())) {
+            where += " AND vehicle like '%" + filter.getCarPlateNumber() + "%'";
         }
         String query = SELECT_QUERY;
-        if (!StringUtils.isEmpty(where)) {
-            query += " WHERE " + where;
-        }
+        query += " WHERE " + where;
         return query;
     }
 
