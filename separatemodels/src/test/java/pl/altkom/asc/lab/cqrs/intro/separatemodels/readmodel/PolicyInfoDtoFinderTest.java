@@ -42,6 +42,17 @@ public class PolicyInfoDtoFinderTest {
     }
 
     @Test
+    public void should_return_two_polices_when_no_filter_condition() {
+        // given
+        PolicyFilter filter = PolicyFilter.builder()
+                .build();
+        // when
+        List<PolicyInfoDto> policyInfoDtoList = policyInfoDtoFinder.findByFilter(filter);
+        // then
+        Assert.assertEquals(2, policyInfoDtoList.size());
+    }
+
+    @Test
     public void should_return_one_policy_with_number_POL0001() {
         // given
         PolicyFilter filter = PolicyFilter.builder()

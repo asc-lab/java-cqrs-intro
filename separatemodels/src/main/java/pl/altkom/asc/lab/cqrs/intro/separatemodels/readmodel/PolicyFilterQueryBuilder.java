@@ -1,39 +1,55 @@
 package pl.altkom.asc.lab.cqrs.intro.separatemodels.readmodel;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDate;
+import java.util.List;
+
 class PolicyFilterQueryBuilder {
+    private String query = "SELECT policy_id, policy_number, cover_from, cover_to, vehicle, policy_holder, total_premium_amount FROM policy_info_dto";
 
-    private static final String SELECT_QUERY = "SELECT policy_id, policy_number, cover_from, cover_to, vehicle, policy_holder, total_premium_amount FROM policy_info_dto";
-    private final PolicyFilter filter;
-
-    PolicyFilterQueryBuilder(PolicyFilter filter) {
-        this.filter = filter;
+    PolicyFilterQueryBuilder where() {
+        query += " WHERE 1 = 1";
+        return this;
     }
 
-    String build() {
-        String where = "1 = 1";
-        if (!StringUtils.isEmpty(filter.getNumber())) {
-            where += " AND policy_number = '" + filter.getNumber() + "'";
+    PolicyFilterQueryBuilder policyNumberEquals(String policyNumber) {
+        if (!StringUtils.isEmpty(policyNumber)) {
+            query += " AND policy_number = '" + policyNumber + "'";
         }
-        if (!StringUtils.isEmpty(filter.getHolderFirstName())) {
-            where += " AND policy_holder like '%" + filter.getHolderFirstName() + "%'";
-        }
-        if (!StringUtils.isEmpty(filter.getHolderLastName())) {
-            where += " AND policy_holder like '%" + filter.getHolderLastName() + "%'";
-        }
-        if (filter.getStartDateFrom() != null) {
-            where += " AND cover_from >= '" + filter.getStartDateFrom() + "'";
-        }
-        if (filter.getStartDateTo() != null) {
-            where += " AND cover_from <= '" + filter.getStartDateTo() + "'";
-        }
-        if (!StringUtils.isEmpty(filter.getCarPlateNumber())) {
-            where += " AND vehicle like '%" + filter.getCarPlateNumber() + "%'";
-        }
-        String query = SELECT_QUERY;
-        query += " WHERE " + where;
-        return query;
+        return this;
     }
 
+    PolicyFilterQueryBuilder policyHolderLike(String policyHolder) {
+        if (!StringUtils.isEmpty(policyHolder)) {
+            query += " AND policy_holder like '%" + policyHolder + "%'";
+        }
+        return this;
+    }
+
+    PolicyFilterQueryBuilder policyStartDateFrom(LocalDate startDate) {
+        if (startDate != null) {
+            query += " AND cover_from >= '" + startDate + "'";
+        }
+        return this;
+    }
+
+    PolicyFilterQueryBuilder policyStartDateTo(LocalDate startDate) {
+        if (startDate != null) {
+            query += " AND cover_from <= '" + startDate + "'";
+        }
+        return this;
+    }
+
+    PolicyFilterQueryBuilder policyCarPlateNumberLike(String carPlateNumber) {
+        if (!StringUtils.isEmpty(carPlateNumber)) {
+            query += " AND vehicle like '%" + carPlateNumber + "%'";
+        }
+        return this;
+    }
+
+    List<PolicyInfoDto> execute(JdbcTemplate jdbcTemplate, PolicyInfoDtoMapRow policyInfoDtoMapRow) {
+        return jdbcTemplate.query(query, policyInfoDtoMapRow);
+    }
 }

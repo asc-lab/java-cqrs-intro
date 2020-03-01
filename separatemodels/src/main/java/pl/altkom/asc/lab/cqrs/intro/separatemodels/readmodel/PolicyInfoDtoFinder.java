@@ -13,9 +13,15 @@ public class PolicyInfoDtoFinder {
     private final JdbcTemplate jdbcTemplate;
 
     public List<PolicyInfoDto> findByFilter(PolicyFilter filter) {
-        PolicyFilterQueryBuilder policyFilterQueryBuilder = new PolicyFilterQueryBuilder(filter);
-        String query = policyFilterQueryBuilder.build();
-        return jdbcTemplate.query(query, new PolicyInfoDtoMapRow());
+        PolicyFilterQueryBuilder policyQueryBuilder = new PolicyFilterQueryBuilder();
+        return policyQueryBuilder.where()
+                .policyNumberEquals(filter.getNumber())
+                .policyHolderLike(filter.getHolderFirstName())
+                .policyHolderLike(filter.getHolderLastName())
+                .policyStartDateFrom(filter.getStartDateFrom())
+                .policyStartDateTo(filter.getStartDateTo())
+                .policyCarPlateNumberLike(filter.getCarPlateNumber())
+                .execute(jdbcTemplate, new PolicyInfoDtoMapRow());
     }
 
 }
