@@ -1,20 +1,21 @@
 package pl.altkom.asc.lab.cqrs.intro.separatemodels.readmodel;
 
+import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.PolicyVersion;
 
 import java.util.List;
 
 public interface PolicyVersionDtoRepository extends CrudRepository<PolicyVersionDto, Long> {
 
+    @Modifying
     @Query("UPDATE policy_version_dto " +
             "SET " +
-            "version_status = :version.versionStatus " +
+            "version_status = :versionStatus " +
             "WHERE " +
-            "policy_version_id = :version.policyVersionId")
-    void update(@Param("version") PolicyVersion version);
+            "policy_version_id = :policyVersionId")
+    void update(@Param("versionStatus") String versionStatus, @Param("policyVersionId") String policyVersionId);
 
     @Query(value = "SELECT " +
             "id, policy_version_id, policy_id, " +

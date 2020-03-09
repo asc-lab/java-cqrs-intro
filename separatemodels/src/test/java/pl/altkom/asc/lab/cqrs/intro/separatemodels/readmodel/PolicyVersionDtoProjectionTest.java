@@ -13,7 +13,6 @@ import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.PolicyVersion;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.testdatabuilders.PoliciesTestDataBuilder;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = SeparateModelsApplication.class)
@@ -37,7 +36,8 @@ public class PolicyVersionDtoProjectionTest {
         //then
         Assert.assertTrue(policyVersionDtoRepository.findVersionsByPolicyNumber(policy.getNumber()).size() > 0);
 
-        PolicyVersionsListDto.PolicyVersionInfoDto createdPolicyVersion = policyVersionDtoRepository.findVersionsByPolicyNumber(policy.getNumber()).get(0);
+        int getSecondRecord = 1; // Value of this variable might depends on other tests.
+        PolicyVersionsListDto.PolicyVersionInfoDto createdPolicyVersion = policyVersionDtoRepository.findVersionsByPolicyNumber(policy.getNumber()).get(getSecondRecord);
 
         Assert.assertNotNull(createdPolicyVersion);
         Assert.assertEquals(policyVersion.getVersionNumber(), createdPolicyVersion.getNumber());
