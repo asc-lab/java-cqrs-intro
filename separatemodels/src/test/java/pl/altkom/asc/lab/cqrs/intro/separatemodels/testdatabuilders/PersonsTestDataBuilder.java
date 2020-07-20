@@ -6,7 +6,7 @@ public class PersonsTestDataBuilder {
 
     public static final String FIRST_NAME_JAN = "Jan";
     public static final String LAST_NAME_KOWALSKI = "Kowalski";
-    static final String FIRST_NAME_KAZIMIERZ = "Kazimierz";
+    public static final String FIRST_NAME_KAZIMIERZ = "Kazimierz";
 
     public static Person kowalski() {
         return new Person(FIRST_NAME_JAN, LAST_NAME_KOWALSKI, "11111116");

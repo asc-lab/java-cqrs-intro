@@ -24,9 +24,9 @@ public class PolicyInfoDtoProjectionTest {
     PolicyInfoDtoRepository repository;
 
     @Test
-    public void testCreatePolicyInfoDto() {
+    public void test_create_policyInfoDto() {
         //given
-        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2019, 1, 1), "POL0001", PersonsTestDataBuilder.kowalski(), CarsTestDataBuilder.oldFordFocus());
+        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2019, 1, 1), policyNumber, PersonsTestDataBuilder.kowalski(), CarsTestDataBuilder.oldFordFocus());
         PolicyInfoDtoProjection projection = new PolicyInfoDtoProjection(repository);
 
         //when

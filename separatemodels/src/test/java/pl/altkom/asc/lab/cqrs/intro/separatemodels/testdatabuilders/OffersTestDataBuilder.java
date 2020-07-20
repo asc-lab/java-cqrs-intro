@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class OffersTestDataBuilder {
-    static Offer standardOneYearOCOfferValidUntil(LocalDate validityEnd, Person customer, Car car) {
+    static Offer oneYearOCOffer(LocalDate validityEnd, Person customer, Car car) {
         Product product = ProductsTestDataBuilder.standardCarInsurance();
 
         var coversPrices = new HashMap<Cover, MonetaryAmount>();

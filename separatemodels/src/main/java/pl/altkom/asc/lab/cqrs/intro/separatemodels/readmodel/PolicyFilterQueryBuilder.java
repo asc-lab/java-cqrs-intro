@@ -1,6 +1,5 @@
 package pl.altkom.asc.lab.cqrs.intro.separatemodels.readmodel;
 
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.util.StringUtils;
@@ -9,6 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 class PolicyFilterQueryBuilder {
+
     private static final String PERCENTAGE_SYMBOL = "%";
     private String query = "SELECT policy_id, policy_number, cover_from, cover_to, vehicle, policy_holder, total_premium_amount FROM policy_info_dto";
     private MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
@@ -58,8 +58,8 @@ class PolicyFilterQueryBuilder {
         return this;
     }
 
-    List<PolicyInfoDto> execute(NamedParameterJdbcTemplate jdbcTemplate, PolicyInfoDtoMapRow policyInfoDtoMapRow) {
-        return jdbcTemplate.query(query, mapSqlParameterSource, policyInfoDtoMapRow);
+    List<PolicyInfoDto> execute(NamedParameterJdbcTemplate jdbcTemplate, PolicyInfoDto.PolicyInfoDtoRowMapper rowMapper) {
+        return jdbcTemplate.query(query, mapSqlParameterSource, rowMapper);
     }
 
     private String getValueForLike(String policyHolder) {

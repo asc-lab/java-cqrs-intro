@@ -1,7 +1,6 @@
 package pl.altkom.asc.lab.cqrs.intro.separatemodels.readmodel;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -14,15 +13,15 @@ public class PolicyInfoDtoFinder {
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     public List<PolicyInfoDto> findByFilter(PolicyFilter filter) {
-        PolicyFilterQueryBuilder policyQueryBuilder = new PolicyFilterQueryBuilder();
-        return policyQueryBuilder.where()
+        return new PolicyFilterQueryBuilder()
+                .where()
                 .policyNumberEquals(filter.getNumber())
                 .policyHolderLike(filter.getHolderFirstName())
                 .policyHolderLike(filter.getHolderLastName())
                 .policyStartDateFrom(filter.getStartDateFrom())
                 .policyStartDateTo(filter.getStartDateTo())
                 .policyCarPlateNumberLike(filter.getCarPlateNumber())
-                .execute(jdbcTemplate, new PolicyInfoDtoMapRow());
+                .execute(jdbcTemplate, new PolicyInfoDto.PolicyInfoDtoRowMapper());
     }
 
 }

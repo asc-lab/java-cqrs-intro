@@ -35,7 +35,7 @@ public class PolicyVersionDtoFinderTest {
     }
 
     @Test
-    public void testFindVersionsByPolicyNumber() {
+    public void should_return_one_policy_version_with_selected_number() {
         //given
         PolicyVersionDtoFinder versionFinder = new PolicyVersionDtoFinder(repository);
 

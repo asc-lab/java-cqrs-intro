@@ -23,6 +23,7 @@ public class PolicyInfoDtoFinderTest {
 
     private static final String POLICY_NUMBER_POL_0001 = "POL0001";
     private static final String POLICY_NUMBER_POL_0002 = "POL0002";
+
     @Autowired
     PolicyInfoDtoProjection policyInfoDtoProjection;
 
@@ -44,8 +45,7 @@ public class PolicyInfoDtoFinderTest {
     @Test
     public void should_return_two_polices_when_no_filter_condition() {
         // given
-        PolicyFilter filter = PolicyFilter.builder()
-                .build();
+        PolicyFilter filter = PolicyFilter.builder().build();
         // when
         List<PolicyInfoDto> policyInfoDtoList = policyInfoDtoFinder.findByFilter(filter);
         // then
