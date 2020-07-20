@@ -21,6 +21,8 @@ import java.util.List;
 @ContextConfiguration(classes = SeparateModelsApplication.class)
 public class PolicyEventsProjectionsHandlerTest {
 
+    private static String policyNumber = "POL0004";
+
     @Autowired
     PolicyInfoDtoRepository policyInfoDtoRepository;
 
@@ -30,7 +32,7 @@ public class PolicyEventsProjectionsHandlerTest {
     @Test
     public void testHandlePolicyCreated() {
         //given
-        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2019, 1, 1));
+        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2019, 1, 1), policyNumber);
         PolicyEventsProjectionsHandler handler = new PolicyEventsProjectionsHandler(
                 new PolicyInfoDtoProjection(policyInfoDtoRepository),
                 new PolicyVersionDtoProjection(policyVersionDtoRepository)

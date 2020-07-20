@@ -16,13 +16,15 @@ import java.time.LocalDate;
 @ContextConfiguration(classes = SeparateModelsApplication.class)
 public class PolicyInfoDtoProjectionTest {
 
+    private static String policyNumber = "POL0003";
+
     @Autowired
     PolicyInfoDtoRepository repository;
 
     @Test
     public void testCreatePolicyInfoDto() {
         //given
-        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2019, 1, 1));
+        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2019, 1, 1), policyNumber);
         PolicyInfoDtoProjection projection = new PolicyInfoDtoProjection(repository);
 
         //when
