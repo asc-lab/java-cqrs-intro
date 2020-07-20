@@ -1,8 +1,6 @@
 package pl.altkom.asc.lab.cqrs.intro.separatemodels.testdatabuilders;
 
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.Cover;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.Offer;
-import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.Product;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.*;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.primitives.MonetaryAmount;
 
 import java.time.LocalDate;
@@ -11,7 +9,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class OffersTestDataBuilder {
-    static Offer standardOneYearOCOfferValidUntil(LocalDate validityEnd) {
+    static Offer oneYearOCOffer(LocalDate validityEnd, Person customer, Car car) {
         Product product = ProductsTestDataBuilder.standardCarInsurance();
 
         var coversPrices = new HashMap<Cover, MonetaryAmount>();
@@ -21,9 +19,9 @@ public class OffersTestDataBuilder {
                 UUID.randomUUID(),
                 "1",
                 product,
+                customer,
                 PersonsTestDataBuilder.kowalski(),
-                PersonsTestDataBuilder.kowalski(),
-                CarsTestDataBuilder.oldFordFocus(),
+                car,
                 Period.ofDays(365),
                 MonetaryAmount.from("500"),
                 validityEnd.minusDays(30),

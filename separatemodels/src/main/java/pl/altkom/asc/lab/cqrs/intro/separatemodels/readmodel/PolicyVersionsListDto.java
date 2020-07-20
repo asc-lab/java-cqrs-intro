@@ -24,10 +24,10 @@ public class PolicyVersionsListDto {
         private String versionStatus;
     }
 
-    static class PolicyVersionInfoDtoRowMapper implements RowMapper {
+    static class PolicyVersionInfoDtoRowMapper implements RowMapper<PolicyVersionInfoDto> {
 
         @Override
-        public Object mapRow(ResultSet rs, int i) throws SQLException {
+        public PolicyVersionInfoDto mapRow(ResultSet rs, int i) throws SQLException {
             return new PolicyVersionInfoDto(
                     rs.getInt("version_number"),
                     rs.getDate("version_from").toLocalDate(),

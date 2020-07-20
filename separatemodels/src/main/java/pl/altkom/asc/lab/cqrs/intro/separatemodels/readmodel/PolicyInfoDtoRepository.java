@@ -24,4 +24,5 @@ public interface PolicyInfoDtoRepository extends CrudRepository<PolicyInfoDto, L
 
     @Query("SELECT * FROM policy_info_dto p WHERE p.policy_id = :policyId")
     Optional<PolicyInfoDto> findByPolicyId(@Param("policyId") UUID policyId);
+
 }

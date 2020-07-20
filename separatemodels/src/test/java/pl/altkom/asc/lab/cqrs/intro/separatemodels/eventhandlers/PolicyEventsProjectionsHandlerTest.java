@@ -12,6 +12,8 @@ import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.Policy;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.PolicyEvents;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.primitives.DateRange;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.readmodel.*;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.testdatabuilders.CarsTestDataBuilder;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.testdatabuilders.PersonsTestDataBuilder;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.testdatabuilders.PoliciesTestDataBuilder;
 
 import java.time.LocalDate;
@@ -21,6 +23,8 @@ import java.util.List;
 @ContextConfiguration(classes = SeparateModelsApplication.class)
 public class PolicyEventsProjectionsHandlerTest {
 
+    private static String policyNumber = "POL0004";
+
     @Autowired
     PolicyInfoDtoRepository policyInfoDtoRepository;
 
@@ -28,9 +32,9 @@ public class PolicyEventsProjectionsHandlerTest {
     PolicyVersionDtoRepository policyVersionDtoRepository;
 
     @Test
-    public void testHandlePolicyCreated() {
+    public void test_handle_policy_created_event() {
         //given
-        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2019, 1, 1));
+        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2019, 1, 1), "POL0001", PersonsTestDataBuilder.kowalski(), CarsTestDataBuilder.oldFordFocus());
         PolicyEventsProjectionsHandler handler = new PolicyEventsProjectionsHandler(
                 new PolicyInfoDtoProjection(policyInfoDtoRepository),
                 new PolicyVersionDtoProjection(policyVersionDtoRepository)
