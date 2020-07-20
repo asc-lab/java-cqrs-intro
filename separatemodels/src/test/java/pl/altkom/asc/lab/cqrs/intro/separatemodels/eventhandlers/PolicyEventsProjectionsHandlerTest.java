@@ -12,6 +12,8 @@ import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.Policy;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.PolicyEvents;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.domain.primitives.DateRange;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.readmodel.*;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.testdatabuilders.CarsTestDataBuilder;
+import pl.altkom.asc.lab.cqrs.intro.separatemodels.testdatabuilders.PersonsTestDataBuilder;
 import pl.altkom.asc.lab.cqrs.intro.separatemodels.testdatabuilders.PoliciesTestDataBuilder;
 
 import java.time.LocalDate;
@@ -32,7 +34,7 @@ public class PolicyEventsProjectionsHandlerTest {
     @Test
     public void testHandlePolicyCreated() {
         //given
-        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2019, 1, 1), policyNumber);
+        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2019, 1, 1), "POL0001", PersonsTestDataBuilder.kowalski(), CarsTestDataBuilder.oldFordFocus());
         PolicyEventsProjectionsHandler handler = new PolicyEventsProjectionsHandler(
                 new PolicyInfoDtoProjection(policyInfoDtoRepository),
                 new PolicyVersionDtoProjection(policyVersionDtoRepository)
