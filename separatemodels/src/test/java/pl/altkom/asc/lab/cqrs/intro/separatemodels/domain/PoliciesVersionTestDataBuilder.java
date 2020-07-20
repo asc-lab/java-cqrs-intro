@@ -26,4 +26,17 @@ public class PoliciesVersionTestDataBuilder {
         				covers);
 	
 	}
+  
+      public static PolicyVersion updateStatusOfPolicyVersion(PolicyVersion policyVersionOld, Policy.PolicyStatus policyStatus) {
+        return new PolicyVersion(policyVersionOld.getId(),
+                policyVersionOld.getVersionNumber(),
+                policyStatus,
+                policyVersionOld.getVersionValidityPeriod(),
+                policyVersionOld.getCoverPeriod(),
+                policyVersionOld.getPolicyHolder(),
+                policyVersionOld.getDriver(),
+                policyVersionOld.getCar(),
+                policyVersionOld.getTotalPremium(),
+                new ArrayList<>());
+    }
 }

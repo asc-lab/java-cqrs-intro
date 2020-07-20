@@ -51,6 +51,6 @@ public class PolicyVersionDtoProjection {
     }
 
     public void updatePolicyVersionDto(PolicyVersion version) {
-        repository.update(version);
+        repository.update(version.getVersionStatus().toString(), version.getId().toString());
     }
 }
