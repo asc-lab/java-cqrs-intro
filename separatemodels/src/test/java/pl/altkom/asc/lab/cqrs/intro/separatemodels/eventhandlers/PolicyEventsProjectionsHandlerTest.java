@@ -23,6 +23,8 @@ import java.util.List;
 @ContextConfiguration(classes = SeparateModelsApplication.class)
 public class PolicyEventsProjectionsHandlerTest {
 
+    private static String policyNumber = "POL0004";
+
     @Autowired
     PolicyInfoDtoRepository policyInfoDtoRepository;
 

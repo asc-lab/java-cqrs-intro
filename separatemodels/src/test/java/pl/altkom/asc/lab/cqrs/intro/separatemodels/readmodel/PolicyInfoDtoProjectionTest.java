@@ -18,6 +18,8 @@ import java.time.LocalDate;
 @ContextConfiguration(classes = SeparateModelsApplication.class)
 public class PolicyInfoDtoProjectionTest {
 
+    private static String policyNumber = "POL0003";
+
     @Autowired
     PolicyInfoDtoRepository repository;
 
