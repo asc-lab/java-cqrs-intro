@@ -24,10 +24,12 @@ public class PolicyVersionDtoProjectionTest {
     @Autowired
     private PolicyVersionDtoProjection policyVersionDtoProjection;
 
+    private static String policyNumber = "POL0004";
+
     @Test
     public void testCreatePolicyVersionDto() {
         //given
-        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2020, 2, 27));
+        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2020, 2, 27), policyNumber);
         PolicyVersion policyVersion = policy.getVersions().get(0);
 
         //when
@@ -36,8 +38,7 @@ public class PolicyVersionDtoProjectionTest {
         //then
         Assert.assertTrue(policyVersionDtoRepository.findVersionsByPolicyNumber(policy.getNumber()).size() > 0);
 
-        int getSecondRecord = 1; // Value of this variable might depends on other tests.
-        PolicyVersionsListDto.PolicyVersionInfoDto createdPolicyVersion = policyVersionDtoRepository.findVersionsByPolicyNumber(policy.getNumber()).get(getSecondRecord);
+        PolicyVersionsListDto.PolicyVersionInfoDto createdPolicyVersion = policyVersionDtoRepository.findVersionsByPolicyNumber(policy.getNumber()).get(1);
 
         Assert.assertNotNull(createdPolicyVersion);
         Assert.assertEquals(policyVersion.getVersionNumber(), createdPolicyVersion.getNumber());
@@ -49,7 +50,7 @@ public class PolicyVersionDtoProjectionTest {
     @Test
     public void testUpdatePolicyVersionDto() {
         //given
-        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2020, 2, 27));
+        Policy policy = PoliciesTestDataBuilder.standardOneYearPolicy(LocalDate.of(2020, 2, 27), policyNumber);
         PolicyVersion policyVersion = policy.getVersions().get(0);
         policyVersionDtoProjection.createPolicyVersionDto(policy, policyVersion);
         PolicyVersion policyVersionUpdate = PoliciesVersionTestDataBuilder.updateStatusOfPolicyVersion(policyVersion, Policy.PolicyStatus.Terminated);
